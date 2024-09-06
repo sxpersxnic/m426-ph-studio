@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import "./globals.css";
+import "@/ui/globals.css";
 import { ubuntu } from "@/ui/fonts/fonts";
 
 export const metadata: Metadata = {
