@@ -11,7 +11,10 @@ export async function fetchLatestPosts() {
       LIMIT 5
     `;
 
-    return data.rows;
+    const latestPosts = data.rows.map((post) => ({
+      ...post,
+    }));
+    return latestPosts;
   } catch (error) {
     console.error('Database Error:', error);
     throw new Error('Failed to fetch the latest posts.');
