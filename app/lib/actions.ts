@@ -5,6 +5,7 @@ import { z } from 'zod';
 import { redirect } from 'next/navigation';
 import { sql } from '@vercel/postgres';
 import { error } from 'console';
+import { AuthError } from 'next-auth';
 
 const FormSchema = z.object({
   id: z.string(),
@@ -95,3 +96,32 @@ export async function updatePost(
   revalidatePath('/m426/blog');
   redirect('/m426/blog');
 }
+
+export async function deletePost(id: string) {
+  try {
+    await sql`DELETE FROM posts WHERE id = ${id}`;
+    revalidatePath('/m426/blog');
+    return { message: 'Deleted Post.' };
+  } catch (error) {
+    return { message: 'Database Error: Failed to Delete Post.' };
+  }
+}
+
+// export async function authenticate(
+//   prevState: string | undefined,
+//   formData: FormData
+// ) {
+//   try {
+//     await signIn('credentials', formData);
+//   } catch (error) {
+//     if (error instanceof AuthError) {
+//       switch (error.type) {
+//         case 'CredentialsSignin':
+//           return 'Invalid credentials.';
+//         default:
+//           return 'Something went wrong.';
+//       }
+//     }
+//     throw error;
+//   }
+// }

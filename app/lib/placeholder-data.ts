@@ -4,7 +4,6 @@ import { PostsTable, UsersTable } from "./definitions";
 const users: UsersTable[] = [
   {
     id: 'd6e15727-9fe1-4961-8c5b-ea44a9bd81aa',
-    post_ids: ['0518fe58-061a-47fb-a949-549ab6f604d8', '69e5b6b9-fc56-4fd6-a7d7-0cb4a1bcd23a'],
     username: 'Evil Rabbit',
     email: 'evil@rabbit.com',
     image_url: '/user/evil-rabbit.png',
@@ -12,7 +11,6 @@ const users: UsersTable[] = [
   },
   {
     id: '3958dc9e-712f-4377-85e9-fec4b6a6442a',
-    post_ids: ['a2999c95-513d-48ca-84bf-bef7e96a4435', '7be09d5d-c122-42a4-b9bd-6fa4037434ff'],
     username: 'Delba de Oliveira',
     email: 'delba@oliveira.com',
     image_url: '/user/delba-de-oliveira.png',
@@ -20,7 +18,6 @@ const users: UsersTable[] = [
   },
   {
     id: '3958dc9e-742f-4377-85e9-fec4b6a6442a',
-    post_ids: ['f4c3ed93-a92c-419d-bd5c-f631a7981cb4', '7d646c62-612b-4a3d-b915-a5eb251d7c2d'],
     username: 'Lee Robinson',
     email: 'lee@robinson.com',
     image_url: '/user/lee-robinson.png',
@@ -28,7 +25,6 @@ const users: UsersTable[] = [
   },
   {
     id: '76d65c26-f784-44a2-ac19-586678f7c2f2',
-    post_ids: ['885e9b60-cd3b-4527-9190-3dc253775930', '524ed2cc-7887-49af-88f7-92a84c5c187d'],
     username: 'Michael Novotny',
     email: 'michael@novotny.com',
     image_url: '/user/michael-novotny.png',
@@ -36,7 +32,6 @@ const users: UsersTable[] = [
   },
   {
     id: 'CC27C14A-0ACF-4F4A-A6C9-D45682C144B9',
-    post_ids: ['6fff99f7-c60e-4ec8-b216-b7465317fa3b', '4fc669c6-7631-4930-aefb-5403893a9119'],
     username: 'Amy Burns',
     email: 'amy@burns.com',
     image_url: '/user/amy-burns.png',
@@ -44,7 +39,6 @@ const users: UsersTable[] = [
   },
   {
     id: '13D07535-C59E-4157-A011-F8D2EF4E0CBB',
-    post_ids: ['d9d2e8ff-9821-40df-9c59-403223fa478d', '9934c81c-3c65-405f-8a29-aad3fa947dd4'],
     username: 'Balazs Orban',
     email: 'balazs@orban.com',
     image_url: '/user/balazs-orban.png',
