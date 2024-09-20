@@ -1,9 +1,9 @@
-import { FormState, SignUpFormSchema } from "@/lib/definitions";
+import { FormState, SignUpFormSchema } from "src/lib/definitions";
 import bcrypt from 'bcrypt';
 import { createSession, deleteSession } from "./session";
 import { redirect } from "next/navigation";
-import { db } from "@/drizzle/db";
-import * as schema from "@/drizzle/schema";
+import { db } from "src/drizzle/db";
+import { UsersTable as users, PostsTable as posts }from "src/drizzle/schema";
 
 export async function signup(state: FormState, formData: FormData) {
   
@@ -25,12 +25,15 @@ export async function signup(state: FormState, formData: FormData) {
   const hashedPassword = await bcrypt.hash(password, 10);
   
   // 3. Insert user
-  const data = await db.insert(schema.UsersTable).values({
-    username,
-    email,
-    hashedPassword
+  const data = await db
+  .insert(users)
+  .values({
+    username: username,
+    email: email,
+    password: hashedPassword,
+    image_url: '/user/default-user-32x32.png'
   })
-    .returning({ id: schema.UsersTable.id })
+    .returning({ id: users.id })
 
     const user = data[0]
 

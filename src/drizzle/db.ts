@@ -1,9 +1,9 @@
-import '@/drizzle/envConfig';
+import 'src/drizzle/envConfig';
 import { drizzle } from 'drizzle-orm/vercel-postgres';
 import * as schema from './schema';
 import { eq, ilike, count, or, desc, asc } from 'drizzle-orm';
 import { sql } from '@vercel/postgres';
-import { CardData, PostForm, PostPreview, UsersPreview } from '@/lib/definitions';
+import { CardData, PostForm, PostPreview, UsersPreview } from 'src/lib/definitions';
 
 export const db = drizzle(sql, { schema });
 

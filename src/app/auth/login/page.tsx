@@ -1,4 +1,4 @@
-import Logo from "@/ui/logo";
+import Logo from "src/ui/logo";
 
 export default function LoginPage() {
   return ( 

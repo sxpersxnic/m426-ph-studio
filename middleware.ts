@@ -1,11 +1,10 @@
-import { decrypt } from "@/lib/authentication/session";
+import { decrypt } from "src/lib/authentication/session";
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
 // 1. Protected, Public, Private routes
-const protectedRoutes = ['/m426/blog', '/m426/blog/create', '/m426/blog/profile', '/m426/blog/search', '/m426/blog/[id]/edit', '/m426/blog/[id]/delete', '/m426/blog/[id]/post'];
-const publicRoutes = ['/m426/auth/login', '/m426/auth/signup', '/'];
-const privateRoutes = ['/dev/*', '/lib/*', '/ui/*', '/seed/*', '/api/*'];
+const protectedRoutes = ['/blog', '/blog/create', '/blog/profile', '/blog/search', '/blog/[id]/edit', '/blog/[id]/delete', '/m426/blog/[id]/post'];
+const publicRoutes = ['/auth/login', '/auth/signup', '/'];
 
 export default async function middleware(req: NextRequest) {
   // 2. Check if the current route is protected, public or private
@@ -19,16 +18,16 @@ export default async function middleware(req: NextRequest) {
 
   // 5. Redirect to /m426/auth/login if the user is not authenticated
   if (isProtectedRoute && !session?.userId) {
-    return NextResponse.redirect(new URL('/m426/auth/login', req.nextUrl))
+    return NextResponse.redirect(new URL('/auth/login', req.nextUrl))
   }
 
   // 6. Redirect to /m426/blog if the user is authenticated
   if (
     isPublicRoute &&
     session?.userId &&
-    !req.nextUrl.pathname.startsWith('/m426/blog')
+    !req.nextUrl.pathname.startsWith('/blog')
   ) {
-    return NextResponse.redirect(new URL('/m426/blog', req.nextUrl))
+    return NextResponse.redirect(new URL('/blog', req.nextUrl))
   }
   return NextResponse.next();
 }

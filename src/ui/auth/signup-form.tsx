@@ -1,4 +1,4 @@
-import { signup } from '@/lib/authentication/auth';
+import { signup } from 'src/lib/authentication/auth';
 import { useFormState, useFormStatus } from 'react-dom';
 
 export function SignUpForm() {

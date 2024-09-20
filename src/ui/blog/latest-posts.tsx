@@ -1,8 +1,8 @@
-import { fetchLatestPosts } from "@/lib/data";
+import { fetchLatestPosts } from "src/lib/data";
 import { ArrowPathIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import clsx from 'clsx';
-import { formatDateToLocal } from "@/lib/utils";
+import { formatDateToLocal } from "src/lib/utils";
 
 export default async function LatestPosts() {
   const latestPosts = await fetchLatestPosts();

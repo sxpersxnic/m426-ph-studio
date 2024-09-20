@@ -1,6 +1,6 @@
-import { posts, users } from '@/lib/placeholder-data';
-import * as schema from '@/drizzle/schema';
-import { db } from '@/drizzle/db';
+import { posts, users } from 'src/lib/placeholder-data';
+import * as schema from 'src/drizzle/schema';
+import { db } from 'src/drizzle/db';
 
 async function seedDatabase() {
 
