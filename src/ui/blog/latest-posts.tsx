@@ -42,7 +42,7 @@ export default async function LatestPosts() {
                       </p>
                     </div>
                     <div className="flex flex-row items-center justify-center pb-2 pt-6">
-                      <small className="text-sm text-gray-500">{formatDateToLocal(post.date)}</small>
+                      <small className="text-sm text-gray-500">{formatDateToLocal(post.date + '')}</small>
                     </div>
                   </div>
                   <div className="flex flex-col items-start justify-end">
