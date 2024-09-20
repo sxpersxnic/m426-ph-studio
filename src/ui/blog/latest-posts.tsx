@@ -1,8 +1,7 @@
-import { fetchLatestPosts } from "src/lib/data";
-import { ArrowPathIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import clsx from 'clsx';
 import { formatDateToLocal } from "src/lib/utils";
+import { fetchLatestPosts } from "@/drizzle/db";
 
 export default async function LatestPosts() {
   const latestPosts = await fetchLatestPosts();

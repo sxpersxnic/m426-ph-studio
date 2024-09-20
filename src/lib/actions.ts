@@ -4,8 +4,6 @@ import { revalidatePath } from 'next/cache';
 import { z } from 'zod';
 import { redirect } from 'next/navigation';
 import { sql } from '@vercel/postgres';
-import { error } from 'console';
-import { AuthError } from 'next-auth';
 
 const FormSchema = z.object({
   id: z.string(),
@@ -60,8 +58,8 @@ export async function createPost(prevState: State, formData: FormData) {
     };
   }
 
-  revalidatePath('/m426/blog');
-  redirect('/m426/blog');
+  revalidatePath('/blog');
+  redirect('/blog');
 }
 
 export async function updatePost(
@@ -93,14 +91,14 @@ export async function updatePost(
     return { message: 'Database Error: Failed to Update Post.'};
   }
 
-  revalidatePath('/m426/blog');
-  redirect('/m426/blog');
+  revalidatePath('/blog');
+  redirect('/blog');
 }
 
 export async function deletePost(id: string) {
   try {
     await sql`DELETE FROM posts WHERE id = ${id}`;
-    revalidatePath('/m426/blog');
+    revalidatePath('/blog');
     return { message: 'Deleted Post.' };
   } catch (error) {
     return { message: 'Database Error: Failed to Delete Post.' };

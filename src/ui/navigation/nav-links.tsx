@@ -6,10 +6,10 @@ import clsx from 'clsx';
 import Link from "next/link";
 
 const links = [
-  { name: 'Home',     href: '/m426/blog', icon: HomeIcon            },
-  { name: 'Profile',  href: '/m426/blog', icon: UserIcon            },
-  { name: 'Create',   href: '/m426/blog', icon: PlusIcon            },
-  { name: 'Search',   href: '/m426/blog', icon: MagnifyingGlassIcon },
+  { name: 'Home',     href: '/blog', icon: HomeIcon            },
+  { name: 'Profile',  href: '/blog/profile', icon: UserIcon            },
+  { name: 'Create',   href: '/blog/create', icon: PlusIcon            },
+  { name: 'Search',   href: '/blog/search', icon: MagnifyingGlassIcon },
 ];
 
 export default function NavLinks() {
