@@ -4,6 +4,9 @@ import { revalidatePath } from 'next/cache';
 import { z } from 'zod';
 import { redirect } from 'next/navigation';
 import { sql } from '@vercel/postgres';
+import { PostsTable as posts} from '@/drizzle/schema';
+import { db } from '@/drizzle/db';
+import { getUser } from './authorization/dal';
 
 const FormSchema = z.object({
   id: z.string(),
@@ -46,12 +49,20 @@ export async function createPost(prevState: State, formData: FormData) {
 
   try {
 
-    //TODO! SQL Insertion will fail due to missing author_id, implement when session functionality implemented !
-    
-    await sql`
-      INSERT INTO posts (title, body, date)
-      VALUES (${title}, ${body}, ${date})
-    `;
+    const user = await getUser();
+
+    if (!user) {
+      return {
+        message: 'Author could not be found!'
+      }
+    }
+
+    await db.insert(posts).values({
+      title: title, 
+      body: body,
+      author_id: user.id
+    })
+    .returning({ id: posts.id })
   } catch (error) {
     return {
       message: 'Database Error: Failed to Create Post.',

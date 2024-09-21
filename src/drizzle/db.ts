@@ -1,9 +1,8 @@
 import 'src/drizzle/envConfig';
 import { drizzle } from 'drizzle-orm/vercel-postgres';
 import * as schema from './schema';
-import { eq, ilike, count, or, desc, asc } from 'drizzle-orm';
 import { sql } from '@vercel/postgres';
-import { CardData, PostForm, PostPreview, UsersPreview } from 'src/lib/definitions';
+import { CardData, PostForm, PostPreview, User, UsersPreview, UsersTable } from 'src/lib/definitions';
 
 export const db = drizzle(sql, { schema });
 
@@ -149,7 +148,7 @@ export async function fetchUsers(): Promise<UsersPreview[]> {
   }
 }
 
-export async function fetchFilteredCustomers(query: string): Promise<UsersPreview[]> {
+export async function fetchFilteredUsers(query: string): Promise<UsersPreview[]> {
   try {
     const data = await db.select({
       id: schema.UsersTable.id,
@@ -174,5 +173,19 @@ export async function fetchFilteredCustomers(query: string): Promise<UsersPrevie
   } catch (error) {
     console.error('Database Error:', error);
     throw new Error('Failed to fetch user table.');
+  }
+}
+
+export async function fetchUserById(id: string): Promise<UsersTable | undefined> {
+  try {
+    const data = await db.select()
+    .from(schema.UsersTable)
+    .where(eq(schema.UsersTable.id, id))
+    .execute();
+
+    return data[0];
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch post.');
   }
 }
