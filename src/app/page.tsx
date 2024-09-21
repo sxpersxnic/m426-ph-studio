@@ -1,15 +1,13 @@
 import Link from "next/link";
 import { ArrowRightIcon } from '@heroicons/react/24/outline';
 import Image from "next/image";
+import Logo from "@/ui/logo";
 
 export default function Page() {
   return (
     <main className="flex min-h-screen flex-col p-6">
       <div className="flex h-14 w-full shrink-0 items-center rounded-lg solide border-2 bg-black border-black p-2 md:p-4 md:h-14">
-        
-        {/* Replace <h1> with <Logo /> once its added*/}
-        <h1>M426 - PH-Studio Blog</h1>
-      
+        <Logo />
       </div>
       <div className="mt-4 flex grow flex-col gap-4 md:flex-row">
         <div className="flex flex-col justify-center gap-6 rounded-lg bg-black px-6 py-10 md:w-2/5 md:px-20">

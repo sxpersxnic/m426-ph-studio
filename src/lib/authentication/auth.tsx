@@ -47,7 +47,7 @@ export async function signup(state: FormState, formData: FormData) {
   await createSession(user.id)
 
   // 5. Redirect to profile
-  redirect('/m426/blog/profile');
+  redirect('/blog/profile');
 }
 
 export async function logout() {

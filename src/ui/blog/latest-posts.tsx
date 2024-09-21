@@ -8,14 +8,13 @@ export default async function LatestPosts() {
 
   return (
     <div className="flex w-full flex-col">
-      <h2 className="mb-4 text-xl md:text-2xl">
-        Most Recents
-      </h2>
+      {/* <h2 className="mb-4 text-xl md:text-2xl"></h2> */}
 
       <div className="flex grow flex-col justify-between rounded-xl bg-gray-50 p-4">
         
         <div className="bg-white px-6">
           {latestPosts.map((post, i) => {
+            const dateStr = post.date + '';
             return (
               <div
                 key={post.id}
@@ -41,7 +40,7 @@ export default async function LatestPosts() {
                       </p>
                     </div>
                     <div className="flex flex-row items-center justify-center pb-2 pt-6">
-                      <small className="text-sm text-gray-500">{formatDateToLocal(post.date + '')}</small>
+                      <small className="text-sm text-gray-500">{formatDateToLocal(dateStr)}</small>
                     </div>
                   </div>
                   <div className="flex flex-col items-start justify-end">
@@ -51,7 +50,6 @@ export default async function LatestPosts() {
                     </p>
                   </div>
                 </div>
-
               </div>
             );
           })}
