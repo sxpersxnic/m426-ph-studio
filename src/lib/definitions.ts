@@ -2,62 +2,79 @@ import { z } from 'zod';
 
 export type User = {
   id:         string;
-  username:       string;
+  username:   string;
   email:      string;
   password:   string;
   image_url:  string;
-  post_ids:   string[];
 };
 
 export type Post = {
-  id: string;
-  author_id: string;
-  title: string;
-  body: string;
-  date: string;
+  id:         string;
+  author_id:  string;
+  title:      string;
+  body:       string;
+  date:       string;
+}
+
+export type SessionPayload = {
+  userId:     string,
+  expiresAt:  Date,
+}
+
+export type UsersPosts = {
+  user_id:    string;
+  post_id:    string;
+  session_id: string;
+  username:   string;
+  email:      string;
+  image_url:  string;
+  title:      string;
+  body:       string;
+  date:        string;
 }
 
 export type PostPreview = {
-  id: string;
-  username: string;
-  image_url: string;
-  date: Date | null;
-  title: string;
+  id:         string;
+  username:   string;
+  image_url:  string;
+  date:       Date | null;
+  title:      string;
 }
 
-export type UsersPreview = {
-  id: string;
-  image_url: string;
-  username: string;
-  total_posts: number;
-}
-
-export type PostsTable = {
-  id: string;
-  author_id: string;
-  title: string;
-  body: string;
-  date: string;
+export type UserPreview = {
+  id:           string;
+  image_url:    string;
+  username:     string;
+  total_posts:  number;
 }
 
 export type UsersTable = {
-  id: string;
+  id:         string;
   image_url?: string;
-  username: string;
-  email: string;
-  password: string;
+  username:   string;
+  email:      string;
+  password:   string;
 }
 
-export type UserField = {
-  id: string;
-  username: string;
-};
+export type PostsTable = {
+  id:         string;
+  author_id:  string;
+  title:      string;
+  body:       string;
+  date:       string;
+}
+
+export type SessionsTable = {
+  id:       string;
+  userId:   string;
+  expires:  Date;
+  created:  Date;
+}
 
 export type PostForm = {
-  id: string; 
-  author_id: string;
-  title: string;
-  body: string;
+  id:     string;
+  title:  string;
+  body:   string;
 }
 
 export type CardData = {
@@ -65,12 +82,11 @@ export type CardData = {
   numberOfPosts: number;
 }
 
-// export type Revenue = {
-//   month: string;
-//   revenue: number;
-// };
-
-// Authentication
+export type Revenue = {
+  month:      string;
+  author_id:  string;
+  revenue:    number;
+}
 
 export const SignUpFormSchema = z.object({
   username: z
@@ -93,9 +109,22 @@ export const SignUpFormSchema = z.object({
 })
 
 export const SignInFormSchema = z.object({
-  username: z.string().trim(),
+  principal: z.string().trim(),
   password: z.string().trim(),
 })
+
+export const PostFormSchema = z.object({
+  id: z.string(),
+  authorId: z.string(),
+  title: z.string({
+    invalid_type_error: 'Please enter a title.',
+  }),
+  body: z.string({
+    invalid_type_error: 'Please enter a body.',
+  }),
+  date: z.string(),
+});
+
 export type FormState =
   | {
       errors?: {
@@ -107,13 +136,10 @@ export type FormState =
     }
   | undefined
 
-export type SessionPayload = {
-  userId: string,
-  expiresAt: Date,
-}
-
-export type SessionsTable = {
-  id: string,
-  userId: string,
-  expires: Date,
-}
+export type PostFormState = {
+  errors?: {
+    title?: string[];
+    body?: string[];
+  };
+  message?: string | null;
+};

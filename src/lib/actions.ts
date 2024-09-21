@@ -1,37 +1,18 @@
 'use server';
 
 import { revalidatePath } from 'next/cache';
-import { z } from 'zod';
 import { redirect } from 'next/navigation';
 import { sql } from '@vercel/postgres';
 import { PostsTable as posts} from '@/drizzle/schema';
 import { db } from '@/drizzle/db';
 import { getUser } from './authorization/dal';
+import { PostFormSchema, PostFormState } from './definitions';
 
-const FormSchema = z.object({
-  id: z.string(),
-  authorId: z.string(),
-  title: z.string({
-    invalid_type_error: 'Please enter a title.',
-  }),
-  body: z.string({
-    invalid_type_error: 'Please enter a body.',
-  }),
-  date: z.string(),
-});
 
-const CreatePost = FormSchema.omit({ id: true, authorId: true, date: true });
-const UpdatePost = FormSchema.omit({ id: true, authorId: true, date: true });
+const CreatePost = PostFormSchema.omit({ id: true, authorId: true, date: true });
+const UpdatePost = PostFormSchema.omit({ id: true, authorId: true, date: true });
 
-export type State = {
-  errors?: {
-    title?: string[];
-    body?: string[];
-  };
-  message?: string | null;
-};
-
-export async function createPost(prevState: State, formData: FormData) {
+export async function createPost(prevState: PostFormState, formData: FormData) {
   const validatedFields = CreatePost.safeParse({
     title: formData.get('title'),
     body: formData.get('body'),
@@ -75,7 +56,7 @@ export async function createPost(prevState: State, formData: FormData) {
 
 export async function updatePost(
   id: string,
-  prevState: State,
+  prevState: PostFormState,
   formData: FormData,
 ) {
   const validatedFields = UpdatePost.safeParse({

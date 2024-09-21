@@ -2,7 +2,8 @@ import 'src/drizzle/envConfig';
 import { drizzle } from 'drizzle-orm/vercel-postgres';
 import * as schema from './schema';
 import { sql } from '@vercel/postgres';
-import { CardData, PostForm, PostPreview, User, UsersPreview, UsersTable } from 'src/lib/definitions';
+import { CardData, PostForm, PostPreview, User, UserPreview, UsersTable } from 'src/lib/definitions';
+import { desc, eq, asc, count, or, ilike } from 'drizzle-orm';
 
 export const db = drizzle(sql, { schema });
 
@@ -127,7 +128,7 @@ export async function fetchPostById(id: string): Promise<PostForm | undefined> {
   }
 }
 
-export async function fetchUsers(): Promise<UsersPreview[]> {
+export async function fetchUsers(): Promise<UserPreview[]> {
   try {
     const data = await db.select({
       id: schema.UsersTable.id,
@@ -148,7 +149,7 @@ export async function fetchUsers(): Promise<UsersPreview[]> {
   }
 }
 
-export async function fetchFilteredUsers(query: string): Promise<UsersPreview[]> {
+export async function fetchFilteredUsers(query: string): Promise<UserPreview[]> {
   try {
     const data = await db.select({
       id: schema.UsersTable.id,
