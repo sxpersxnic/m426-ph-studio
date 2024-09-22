@@ -6,10 +6,10 @@ import clsx from 'clsx';
 import Link from "next/link";
 
 const links = [
-  { name: 'Home',     href: '/blog', icon: HomeIcon            },
+  { name: 'Home',     href: '/blog',         icon: HomeIcon            },
   { name: 'Profile',  href: '/blog/profile', icon: UserIcon            },
-  { name: 'Create',   href: '/blog/create', icon: PlusIcon            },
-  { name: 'Search',   href: '/blog/search', icon: MagnifyingGlassIcon },
+  { name: 'Create',   href: '/blog/create',  icon: PlusIcon            },
+  { name: 'Search',   href: '/blog/search',  icon: MagnifyingGlassIcon },
 ];
 
 export default function NavLinks() {
@@ -24,9 +24,9 @@ export default function NavLinks() {
             key={link.name}
             href={link.href}
             className={clsx(
-              'flex h-[48px] grow items-center justify-center gap-2 rounded-md bg-black p-3 text-sm font-medium md:flex-none md:justify-start md:p-2 md:px-3',
+              'flex h-[48px] grow items-center justify-center gap-2 rounded-md bg-black text-white p-3 text-sm font-medium md:flex-none md:justify-start md:p-2 md:px-3',
               {
-                'bg-gray-800 text-gray-200': pathname === link.href,
+                'bg-gray-800': pathname === link.href,
               },
             )}
           >

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import clsx from 'clsx';
 import { formatDateToLocal } from "src/lib/utils";
-import { fetchLatestPosts } from "@/drizzle/db";
+import { fetchLatestPosts } from "@/lib/data";
 
 export default async function LatestPosts() {
   const latestPosts = await fetchLatestPosts();

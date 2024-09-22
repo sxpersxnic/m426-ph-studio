@@ -1,4 +1,4 @@
-import '@/ui/global.css';
+import '@/ui/global.css'
 import { inter } from 'src/ui/fonts';
 import { Metadata } from 'next';
 
