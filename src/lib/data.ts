@@ -1,5 +1,5 @@
 import { sql } from '@vercel/postgres';
-import { PostForm, PostPreview, PostsTable, UserPreview, UsersTable } from './definitions';
+import { PostPreview, PostsTable, PostView, UserPreview, UsersTable } from './definitions';
 
 export async function fetchLatestPosts() {
   try {
@@ -103,14 +103,17 @@ export async function fetchPostsPages(query: string) {
 export async function fetchPostById(id: string) {
   //? noStore();
   try {
-    const data = await sql<PostForm>`
+    const data = await sql<PostView>`
       SELECT
+        users.username,
+        users.image_url,
         posts.id,
         posts.author_id,
         posts.title,
         posts.body,
         posts.date
       FROM posts
+      JOIN users ON posts.author_id = users.id
       WHERE posts.id = ${id};
     `;
 

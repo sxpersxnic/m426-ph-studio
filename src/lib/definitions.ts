@@ -48,6 +48,16 @@ export type UserPreview = {
   total_posts:  number;
 }
 
+export type PostView = {
+  id: string;
+  author_id: string;
+  username: string;
+  image_url: string;
+  title: string;
+  body: string;
+  date: Date | null;
+}
+
 export type UsersTable = {
   id:         string;
   image_url?: string;
