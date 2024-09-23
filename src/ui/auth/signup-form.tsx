@@ -1,11 +1,9 @@
-import { signup } from 'src/lib/authentication/auth';
 import { useFormState, useFormStatus } from 'react-dom';
 
 export function SignUpForm() {
-  const [state, action] = useFormState(signup, undefined)
 
   return (
-    <form action={action}>
+    <form>
       <div>
         <label htmlFor="username">
           Username
