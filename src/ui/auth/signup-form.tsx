@@ -1,6 +1,6 @@
 export function SignUpForm() {
 
   return (
-    <H1>Sign up Form</H1>
+    <h1>Sign up Form</h1>
   );
 }
