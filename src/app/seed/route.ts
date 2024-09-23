@@ -9,7 +9,7 @@ async function seedUsers() {
   await client.sql`
     CREATE TABLE IF NOT EXISTS users (
       id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
-      username VARCHAR(255) NOT NULL,
+      username VARCHAR(255) NOT NULL UNIQUE,
       email TEXT NOT NULL UNIQUE,
       image_url VARCHAR(255) NOT NULL,
       password TEXT NOT NULL
@@ -66,6 +66,7 @@ async function seedSessions() {
       id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
       user_id UUID NOT NULL,
       expires_at DATE NOT NULL,
+      created_at DATE NOT NULL,
       CONSTRAINT fk_user
       FOREIGN KEY (user_id) REFERENCES users(id)
     );

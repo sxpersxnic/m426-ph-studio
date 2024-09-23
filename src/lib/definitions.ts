@@ -8,6 +8,7 @@ export type User = {
   image_url:  string;
 };
 
+
 export type Post = {
   id:         string;
   author_id:  string;
@@ -31,6 +32,13 @@ export type UsersPosts = {
   title:      string;
   body:       string;
   date:        string;
+}
+
+export type UserRecord = {
+  id: string;
+  username: string;
+  email: string;
+  image_url: string;
 }
 
 export type PostPreview = {
@@ -135,7 +143,7 @@ export const PostFormSchema = z.object({
   date: z.string(),
 });
 
-export type FormState =
+export type SignUpFormState =
   | {
       errors?: {
         username?: string[]
