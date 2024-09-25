@@ -18,7 +18,7 @@ export type Post = {
 }
 
 export type SessionPayload = {
-  userId:     string,
+  sessionId:     string,
   expiresAt:  Date,
 }
 
@@ -154,10 +154,23 @@ export type SignUpFormState =
     }
   | undefined
 
-export type PostFormState = {
+export type SignInFormState =
+  | {
+      errors?: {
+        principal?: string[]    
+        password?: string[]
+      }
+      message?: string
+    }
+  | undefined
+
+
+  export type PostFormState = {
   errors?: {
     title?: string[];
     body?: string[];
   };
   message?: string | null;
 };
+
+export const defaultPfp = '/user/default-32x32.png';

@@ -1,5 +1,5 @@
 import { sql } from '@vercel/postgres';
-import { PostPreview, PostsTable, PostView, UserPreview, UsersTable } from './definitions';
+import { PostPreview, PostsTable, PostView, UserPreview, UserRecord, UsersTable } from './definitions';
 
 export async function fetchLatestPosts() {
   try {
@@ -170,5 +170,29 @@ export async function fetchFilteredCustomers(query: string) {
   } catch (err) {
     console.error('Database Error:', err);
     throw new Error('Failed to fetch user table.');
+  }
+}
+
+export async function fetchUserById(id: string) {
+  //? noStore();
+  try {
+    const data = await sql<UserRecord>`
+      SELECT
+        users.id,
+        users.username,
+        users.email,
+        users.image_url
+      FROM posts
+      JOIN users ON posts.author_id = users.id
+      WHERE posts.id = ${id};
+    `;
+
+    const user = data.rows;
+
+    console.log(user);
+    return user[0];
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch user.');
   }
 }

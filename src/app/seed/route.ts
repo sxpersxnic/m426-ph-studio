@@ -59,14 +59,12 @@ async function seedPosts() {
 }
 
 async function seedSessions() {
-  await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
 
   await client.sql`
     CREATE TABLE IF NOT EXISTS sessions (
-      id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+      id UUID PRIMARY KEY,
       user_id UUID NOT NULL,
       expires_at DATE NOT NULL,
-      created_at DATE NOT NULL,
       CONSTRAINT fk_user
       FOREIGN KEY (user_id) REFERENCES users(id)
     );
