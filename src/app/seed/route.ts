@@ -1,6 +1,8 @@
 import bcrypt from 'bcrypt';
 import { db } from '@vercel/postgres';
 import { dummyUser, posts, revenue, users } from '@/lib/placeholder-data';
+import { revalidatePath } from 'next/cache';
+import { redirect } from 'next/navigation';
 
 const client = await db.connect();
 
@@ -142,9 +144,12 @@ export async function GET() {
     await client.sql`COMMIT`;
     
     console.log("Successfully committed!");
-    return Response.json({ message: 'Database seeded successfully' });
+    Response.json({ message: 'Database seeded successfully' });
+    revalidatePath('/');
+    redirect('/');
   } catch (error) {
     await client.sql`ROLLBACK`;
-    return Response.json({ error }, { status: 500 });
+    console.error(error);
+    redirect('/');
   }
 }

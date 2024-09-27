@@ -3,7 +3,6 @@ import { UsersTable } from "@/lib/definitions";
 import { formatDateToLocal } from "@/lib/utils";
 import clsx from "clsx";
 import Link from "next/link";
-import Breadcrumbs from "../../navigation/breadcrumbs";
 
 export default async function ProfilePosts({ id }: {id: string}) {
 
@@ -15,15 +14,15 @@ export default async function ProfilePosts({ id }: {id: string}) {
   return (      
     <div>
       <div>
-        <div className="flex grow flex-col justify-between rounded-xl bg-gray-50 p-4">
-          <div className="bg-white px-6 border rounded-md">
+        <div className="flex grow flex-col py-4">
+          <div className="bg-white px-6 rounded-md">
             {profilePosts.map((post, i) => {
           const dateStr = post.date + '';
           return (
             <Link
               href={path(post.id)}
               className={clsx(
-                'flex flex-row items-center justify-between py-4',
+                'flex flex-row items-center justify-between py-4 hover:bg-gray-50 transition-color',
                 {
                   'border-t': i !== 0,
                 },

@@ -16,7 +16,7 @@ export default async function Post({ post }: { post: PostView }) {
           >
             <div className="flex flex-col items-start justify-center w-full">
               <div className="flex flex-row items-center justify-between w-full mb-6 text-base py-4 border-b">
-                <Link href={`/blog/${post.author_id}/profile`} className="flex flex-row items-center justify-center">
+                <Link href={`/profile/${post.author_id}`} className="flex flex-row items-center justify-center">
                   <Image
                     src={post.image_url}
                     alt={`${post.username}'s profile picture`}

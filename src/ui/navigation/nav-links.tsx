@@ -9,7 +9,7 @@ const id = '11111111-1111-4111-b111-111111111111'
 
 const links = [
   { name: 'Home',     href: '/blog',         icon: HomeIcon            },
-  { name: 'Profile',  href: `/blog/${id}/profile`, icon: UserIcon            },
+  { name: 'Profile',  href: `/profile/${id}`, icon: UserIcon            },
   { name: 'Create',   href: '/blog/create',  icon: PlusIcon            },
   { name: 'Search',   href: '/blog/search',  icon: MagnifyingGlassIcon },
 ];
