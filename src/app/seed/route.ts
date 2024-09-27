@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 import { db } from '@vercel/postgres';
-import { posts, revenue, users } from '@/lib/placeholder-data';
+import { dummyUser, posts, revenue, users } from '@/lib/placeholder-data';
 
 const client = await db.connect();
 
@@ -15,7 +15,6 @@ async function seedUsers() {
       password TEXT NOT NULL
     );
   `;
-
   const insertedUsers = await Promise.all(
     users.map(async (user) => {
       const hashedPassword = await bcrypt.hash(user.password, 10);
@@ -29,6 +28,32 @@ async function seedUsers() {
 
   return insertedUsers;
 }
+
+async function seedDummy() {
+  await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
+  await client.sql`
+    CREATE TABLE IF NOT EXISTS users (
+      id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+      username VARCHAR(255) NOT NULL UNIQUE,
+      email TEXT NOT NULL UNIQUE,
+      image_url VARCHAR(255) NOT NULL,
+      password TEXT NOT NULL
+    );
+  `;
+  const insertedUsers = await Promise.all(
+    dummyUser.map(async (user) => {
+      const hashedPassword = await bcrypt.hash(user.password, 10);
+      return client.sql`
+        INSERT INTO users (id, username, email, image_url, password)
+        VALUES (${user.id}, ${user.username}, ${user.email}, ${user.image_url}, ${hashedPassword})
+        ON CONFLICT (id) DO NOTHING;
+      `;
+    }),
+  );
+
+  return insertedUsers;
+}
+
 
 async function seedPosts() {
   await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
@@ -57,6 +82,7 @@ async function seedPosts() {
 
   return insertedPosts;
 }
+
 
 async function seedSessions() {
 
@@ -96,6 +122,9 @@ export async function GET() {
   try {
     console.log("Starting database seeding...");
     await client.sql`BEGIN`;
+
+    console.log("Seeding dummy...");
+    await seedDummy();
 
     console.log("Seeding users...");
     await seedUsers();

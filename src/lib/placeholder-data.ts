@@ -1,6 +1,17 @@
 import { PostsTable, UsersTable } from "./definitions";
 import { generateUUID } from "./utils";
 
+//TODO: Remove when auth is implemented
+const dummyUser: UsersTable[] = [ 
+  {
+    id: '11111111-1111-4111-b111-111111111111',
+    username: 'testuser',
+    email: 'user@localhost.com',
+    image_url: '/user/default-32x32.png',
+    password: 'P@ssw0rd!14',
+  },
+]
+
 // Dummy records: 6
 const users: UsersTable[] = [
   {
@@ -150,4 +161,4 @@ const revenue = [
   { month: 'Dec', revenue: 4800 },
 ];
 
-export { users, posts, revenue };
+export { dummyUser, users, posts, revenue };

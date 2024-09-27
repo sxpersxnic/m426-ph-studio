@@ -1,7 +1,6 @@
 import { fetchPostById } from "@/lib/data";
 import Post from "@/ui/blog/post";
 import Breadcrumbs from "@/ui/navigation/breadcrumbs";
-import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 export default async function Page({ params }: { params: { id: string } }) {

@@ -147,7 +147,7 @@ export async function fetchUsers() {
   }
 }
 
-export async function fetchFilteredCustomers(query: string) {
+export async function fetchFilteredUsers(query: string) {
   try {
     const data = await sql<UsersTable>`
 		SELECT
@@ -182,9 +182,8 @@ export async function fetchUserById(id: string) {
         users.username,
         users.email,
         users.image_url
-      FROM posts
-      JOIN users ON posts.author_id = users.id
-      WHERE posts.id = ${id};
+      FROM users
+      WHERE users.id = ${id};
     `;
 
     const user = data.rows;
@@ -194,5 +193,26 @@ export async function fetchUserById(id: string) {
   } catch (error) {
     console.error('Database Error:', error);
     throw new Error('Failed to fetch user.');
+  }
+}
+
+export async function fetchProfilePosts(id: string) {
+  try {
+    const data = await sql<PostPreview>`
+      SELECT posts.id, users.username, users.image_url, posts.date, posts.title
+      FROM posts
+      JOIN users ON posts.author_id = users.id
+      WHERE posts.author_id = ${id} 
+      ORDER BY posts.date DESC
+    `;
+
+    const profilePosts = data.rows.map((post) => ({
+      ...post,
+    }));
+
+    return profilePosts;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch the Profiles posts.');
   }
 }

@@ -3,20 +3,21 @@
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { sql } from '@vercel/postgres';
-import { PostFormSchema, PostFormState } from './definitions';
-import { verifySession } from './auth/dal';
+import { PostFormSchema, PostFormState, UsersTable } from './definitions';
 import { fetchUserById } from './data';
 
+//TODO: Remove when auth is implemented
 
 const CreatePost = PostFormSchema.omit({ id: true, authorId: true, date: true });
 const UpdatePost = PostFormSchema.omit({ id: true, authorId: true, date: true });
 
 export async function createPost(prevState: PostFormState, formData: FormData) {
-  const session = await verifySession();
-  const id = session?.userId;
-
-  const user = await fetchUserById(id);
   
+  // const session = await verifySession();
+  // const id = session?.userId;
+  const dummyId: string = '11111111-1111-4111-b111-111111111111'
+  const user = await fetchUserById(dummyId);
+
   if (!user) {
     return {
       message: 'Author could not be found!'
@@ -50,19 +51,20 @@ export async function createPost(prevState: PostFormState, formData: FormData) {
     };
   }
 
-  const postId = await sql`
-      SELECT posts.id
+  const data = await sql`
+      SELECT *
       FROM posts
       WHERE 
         author_id = ${user.id} AND
         title = ${title} AND
         body = ${body} AND 
         date = ${date};
-
   `;
 
-  revalidatePath(`/blog/${postId}/post`);
-  redirect(`/blog/${postId}/post`);
+  const post = data.rows;
+
+  revalidatePath(`/blog/${post[0].id}/post`);
+  redirect(`/blog/${post[0].id}/post`);
 }
 
 export async function updatePost(

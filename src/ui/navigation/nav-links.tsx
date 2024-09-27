@@ -5,9 +5,11 @@ import { usePathname } from "next/navigation";
 import clsx from 'clsx';
 import Link from "next/link";
 
+const id = '11111111-1111-4111-b111-111111111111'
+
 const links = [
   { name: 'Home',     href: '/blog',         icon: HomeIcon            },
-  { name: 'Profile',  href: '/blog/profile', icon: UserIcon            },
+  { name: 'Profile',  href: `/blog/${id}/profile`, icon: UserIcon            },
   { name: 'Create',   href: '/blog/create',  icon: PlusIcon            },
   { name: 'Search',   href: '/blog/search',  icon: MagnifyingGlassIcon },
 ];

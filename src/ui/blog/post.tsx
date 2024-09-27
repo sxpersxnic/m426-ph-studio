@@ -1,8 +1,9 @@
 import Image from "next/image";
 import { formatDateToLocal } from "src/lib/utils";
 import { PostView } from "@/lib/definitions";
+import Link from "next/link";
 
-export default async function LatestPosts({ post }: { post: PostView }) {
+export default async function Post({ post }: { post: PostView }) {
   const dateStr = post.date + '';
 
   return (
@@ -15,7 +16,7 @@ export default async function LatestPosts({ post }: { post: PostView }) {
           >
             <div className="flex flex-col items-start justify-center w-full">
               <div className="flex flex-row items-center justify-between w-full mb-6 text-base py-4 border-b">
-                <div className="flex flex-row items-center justify-center">
+                <Link href={`/blog/${post.author_id}/profile`} className="flex flex-row items-center justify-center">
                   <Image
                     src={post.image_url}
                     alt={`${post.username}'s profile picture`}
@@ -26,7 +27,7 @@ export default async function LatestPosts({ post }: { post: PostView }) {
                   <p className="truncate font-semibold md:text-based">
                     {post.username}
                   </p>
-                </div>
+                </Link>
                 <div className="flex flex-row items-center justify-center">
                   <p className="text-sm text-gray-500">{formatDateToLocal(dateStr)}</p>
                 </div>
