@@ -4,7 +4,7 @@ import { PostPreview, PostsTable, PostView, UserPreview, UserRecord, UsersTable 
 export async function fetchLatestPosts() {
   try {
     const data = await sql<PostPreview>`
-      SELECT posts.id, users.username, users.image_url, posts.date, posts.title
+      SELECT posts.id, posts.author_id, users.username, users.image_url, posts.date, posts.title
       FROM posts
       JOIN users ON posts.author_id = users.id
       ORDER BY posts.date DESC

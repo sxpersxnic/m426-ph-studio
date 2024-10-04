@@ -4,6 +4,7 @@ import { HomeIcon, MagnifyingGlassIcon, PlusIcon, UserIcon } from "@heroicons/re
 import { usePathname } from "next/navigation";
 import clsx from 'clsx';
 import Link from "next/link";
+import React from "react";
 
 const id = '11111111-1111-4111-b111-111111111111'
 
@@ -26,9 +27,9 @@ export default function NavLinks() {
             key={link.name}
             href={link.href}
             className={clsx(
-              'flex h-[48px] grow items-center justify-center gap-2 rounded-md bg-black text-white p-3 text-sm font-medium md:flex-none md:justify-start md:p-2 md:px-3',
+              'flex h-[48px] grow items-center justify-center gap-2 rounded-md border-2 border-black text-black p-3 text-sm font-medium md:flex-none md:justify-start md:p-2 md:px-3',
               {
-                'bg-gray-800': pathname === link.href,
+                'bg-gray-200': pathname === link.href,
               },
             )}
           >

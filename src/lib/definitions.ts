@@ -43,6 +43,7 @@ export type UserRecord = {
 
 export type PostPreview = {
   id:         string;
+  author_id:  string;
   username:   string;
   image_url:  string;
   date:       Date | null;
@@ -177,3 +178,11 @@ export type SignInFormState =
 };
 
 export const defaultPfp = '/user/default-32x32.png';
+
+export const postPath = (id: string) => {
+  return `/blog/${id}/post`;
+}
+
+export const profilePath = (id: string) => {
+  return `/profile/${id}`;
+}
