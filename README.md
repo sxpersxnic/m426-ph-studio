@@ -4,4 +4,4 @@
 
 ### Technical details
 
-Fullstack WebApp built with Next.js, TypeScript and Drizzle PostgreSQL, CD with Vercel.
+Fullstack WebApp built with Next.js, TypeScript and PostgreSQL, CD with Vercel.

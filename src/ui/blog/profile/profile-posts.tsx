@@ -1,5 +1,4 @@
 import { fetchProfilePosts } from "@/lib/data";
-import { UsersTable } from "@/lib/definitions";
 import { formatDateToLocal } from "@/lib/utils";
 import clsx from "clsx";
 import Link from "next/link";
