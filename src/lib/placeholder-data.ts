@@ -1,4 +1,4 @@
-import { PostsTable, UsersTable } from "./definitions";
+import { Post, PostsTable, UsersTable } from "./definitions";
 import { generateUUID } from "./utils";
 
 //TODO: Remove when auth is implemented
@@ -59,7 +59,7 @@ const users: UsersTable[] = [
 ];
 
 // Dummy records: 12
-const posts: PostsTable[] = [
+const posts: Post[] = [
   {
     id: generateUUID(),
     author_id: users[0].id,
