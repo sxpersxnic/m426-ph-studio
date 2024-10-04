@@ -77,6 +77,9 @@ export type UsersTable = {
 export type PostsTable = {
   id:         string;
   author_id:  string;
+  username: string;
+  email: string;
+  image_url: string;
   title:      string;
   body:       string;
   date:       string;

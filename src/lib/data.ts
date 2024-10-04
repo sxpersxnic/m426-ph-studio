@@ -56,6 +56,9 @@ export async function fetchFilteredPosts(
       SELECT
         posts.id,
         posts.author_id,
+        users.username,
+        users.email,
+        users.image_url,
         posts.title,
         posts.body,
         posts.date
