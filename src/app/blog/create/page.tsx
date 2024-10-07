@@ -1,6 +1,6 @@
 "user client";
 
-import Form from "@/ui/blog/create-form";
+import CreateForm from "@/ui/forms/create-form";
 import Breadcrumbs from "@/ui/navigation/breadcrumbs";
 
 export default function Page() {
@@ -16,7 +16,7 @@ export default function Page() {
           },
         ]}
       />
-      <Form />
+      <CreateForm />
     </main>
   );
 }

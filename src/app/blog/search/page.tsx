@@ -3,7 +3,7 @@ import Search from "@/ui/search";
 import { Suspense } from "react";
 import Loading from "./loading";
 import Pagination from "@/ui/navigation/pagination";
-import Table from "@/ui/blog/table";
+import PostsTable from "@/ui/blog/table";
 
 export default async function Page({
   searchParams,
@@ -28,7 +28,7 @@ export default async function Page({
         <Search placeholder="Search posts..." />
       </div>
       <Suspense key={query + currentPage} fallback={<Loading/>}>
-        <Table query={query} currentPage={currentPage} />
+      <PostsTable query={query} currentPage={currentPage} />
       </Suspense>
       <div className="mt-5 flex w-full justify-center">
         <Pagination totalPages={totalPages} />
