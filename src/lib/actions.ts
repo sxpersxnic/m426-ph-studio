@@ -104,9 +104,9 @@ export async function deletePost(id: string) {
   try {
     await sql`DELETE FROM posts WHERE id = ${id}`;
     revalidatePath('/blog');
-    return { message: 'Deleted Post.' };
+    redirect('/blog');
   } catch (error) {
-    return { message: 'Database Error: Failed to Delete Post.' };
+    console.error('Database Error: Failed to Delete Post.');
   }
 }
 

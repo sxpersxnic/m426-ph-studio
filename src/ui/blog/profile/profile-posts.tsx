@@ -5,6 +5,7 @@ import { PencilIcon, TrashIcon } from "@heroicons/react/24/outline";
 import clsx from "clsx";
 import Link from "next/link";
 import React from "react";
+import { DeletePost, UpdatePost } from "./buttons";
 
 export default async function ProfilePosts({ id }: {id: string}) {
 
@@ -53,29 +54,5 @@ export default async function ProfilePosts({ id }: {id: string}) {
         </div>
         </div>
     </div>    
-  );
-}
-
-function UpdatePost({ id }: { id: string }) {
-  return (
-    <Link
-      href={`/blog/${id}/edit`}
-      className="rounded-md border p-2 hover:bg-gray-100"
-    >
-      <PencilIcon className="w-5"/>
-    </Link>
-  );
-}
-
-function DeletePost({ id }: { id: string}) {
-  const deletePostWithId = deletePost.bind(null, id);
-
-  return (
-    <form action={deletePostWithId}>
-      <button type="submit" className="rounded-md border p-2 hover:bg-gray-100">
-        <span className="sr-only">Delete</span>
-        <TrashIcon className="w-4" />
-      </button>
-    </form>
   );
 }
