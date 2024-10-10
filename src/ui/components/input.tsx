@@ -7,7 +7,7 @@ export default function TextInput({ text }: { text: string }) {
       name={`${lowerCaseText}`}
       type="text"
       placeholder={`Enter ${text}`}
-      className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
+      className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-none focus:mt-2 focus:placeholder:opacity-0"
       required
     />
   );

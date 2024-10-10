@@ -4,33 +4,41 @@ import InputField from "../components/input-field";
 
 export default function RegisterForm() {
   return (
-    <form>
-      <div className="rounded-md bg-gray-50 p-4 md:p-6">
+    <form className="flex flex-col justify-center items-center w-fit h-fit py-4">
+      <div className="flex flex-col justify-center items-center p-4 md:p-6 w-80">
         <div>
           <InputField type="Username" />
-            {/* {state?.errors?.title && <p>{state.errors.title}</p>} */}
+            {/* {state?.errors?.username && <p>{state.errors.username}</p>} */}
         </div>
         <div>
-          <label htmlFor="body" className="mb-2 block text-sm font-medium">Body</label>
-          <input
-            id="body"
-            name="body"
-            type="text"
-            placeholder="Enter Body"
-            className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
-            required
-            />
-            {/* {state?.errors?.body && <p>{state.errors.body}</p>} */}
+          <InputField type="Email" />
+            {/* {state?.errors?.email && <p>{state.errors.email}</p>} */}
+        </div>
+        <div>
+          <InputField type="Password" />
+            {/* {state?.errors?.password && <p>{state.errors.password}</p>} */}
         </div>
       </div>
-      <div className="mt-6 flex justify-end gap-4">
-        <Link
-          href="/blog"
-          className="flex h-10 items-center rounded-lg bg-gray-100 px-4 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-200"
-        >
-          Cancel
-        </Link>
-        <Button type="submit">Create</Button>
+      <div className="flex md:justify-end mt-6 px-8 gap-4">
+        <div className="flex flex-row items-center justify-end mb-2 gap-4">
+          <div
+            className="flex flex-row h-8 items-center text-xs font-light text-gray-500 gap-1"
+            >
+            <p>Already have an account? </p>
+            <Link href="/auth/login" className="transition-colors text-blue-400 underline hover:text-blue-300">
+              Login  
+            </Link>
+          </div>
+          <div className="flex flex-row gap-3 ">
+            <Link
+              href="/"
+              className="flex h-10 items-center rounded-lg bg-red-400 px-4 text-sm font-medium text-gray-100 transition-colors hover:bg-red-300"
+              >
+              Cancel
+            </Link>
+            <Button type="submit">Register</Button>
+          </div>
+        </div>
       </div>
     </form>
   );
