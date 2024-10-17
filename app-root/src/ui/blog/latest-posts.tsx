@@ -4,6 +4,16 @@ import { formatDateToLocal } from "@/lib/utils";
 import { fetchLatestPosts } from "@/lib/data";
 import Link from "next/link";
 import { postPath, profilePath } from "@/lib/definitions";
+import { GetServerSideProps } from "next";
+
+const getServerSideProps: GetServerSideProps = async (context) => {
+  const { id } = context.params as { id: string };
+  return {
+    props: {
+      params: {id},
+    },
+  };
+};
 
 export default async function LatestPosts() {
   const latestPosts = await fetchLatestPosts();
