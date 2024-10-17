@@ -1,6 +1,6 @@
 import Image from "next/image";
 import clsx from 'clsx';
-import { formatDateToLocal } from "src/lib/utils";
+import { formatDateToLocal } from "@/lib/utils";
 import { fetchLatestPosts } from "@/lib/data";
 import Link from "next/link";
 import { postPath, profilePath } from "@/lib/definitions";

@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import SideNav from 'src/ui/navigation/sidenav';
+import SideNav from '@/ui/navigation/sidenav';
 
 export const experimental_ppr = true;
 

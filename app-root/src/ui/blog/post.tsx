@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { formatDateToLocal } from "src/lib/utils";
+import { formatDateToLocal } from "@/lib/utils";
 import { PostView } from "@/lib/definitions";
 import Link from "next/link";
 
