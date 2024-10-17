@@ -3,26 +3,9 @@ import EditForm from "@/ui/forms/edit-form";
 import Breadcrumbs from "@/ui/navigation/breadcrumbs";
 import { notFound } from "next/navigation";
 
-import { GetServerSideProps } from "next";
-
-const getServerSideProps: GetServerSideProps = async (context) => {
-  const { id } = context.params as { id: string };
-  return {
-    props: {
-      params: {id},
-    },
-  };
-};
-
-type PageProps = {
-  params: {
-    id: string;
-  };
-};
-
-export default async function Page({ params }: PageProps) {
+export default async function Page({ params }: { params: { id: string }}) {
   const id = params.id;
-  const post = await fetchPostById(id);
+  const [post] = await Promise.all([ fetchPostById(id), ]);
   
   if (!post) {
     notFound();
