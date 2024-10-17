@@ -15,6 +15,7 @@ export default async function LatestPosts() {
             const dateStr = post.date + '';
             return (
               <div
+                key={post.id}
                 className={clsx(
                   'flex flex-row items-center justify-between py-4',
                   {
