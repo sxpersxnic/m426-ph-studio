@@ -1,4 +1,4 @@
-import LatestPosts from "src/ui/blog/latest-posts";
+import LatestPosts from "@/ui/blog/latest-posts";
 import Loading from "./loading";
 import { Suspense } from "react";
 
